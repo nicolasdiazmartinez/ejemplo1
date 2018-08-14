@@ -6,11 +6,14 @@
 package creacionarchivoxml;
 
 import java.net.URL;
+import java.util.LinkedList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import modelo.Estudiante;
 
 /**
  *
@@ -19,17 +22,50 @@ import javafx.scene.control.Label;
 public class FXMLDocumentController implements Initializable {
     
     @FXML
-    private Label label;
+    private Label nombre;
+     @FXML
+    private Label telefono;
+      @FXML
+    private Label codigo;
+       @FXML
+    private Label carrera;
+        @FXML
+    private Label correo;
+         @FXML
+    private TextField  jnombre;
+          @FXML
+    private TextField jtelefono;
+           @FXML
+    private TextField jcodigo;
+            @FXML
+    private TextField jcarrera;
+             @FXML
+    private TextField jcorreo;
+             
+            LinkedList<Estudiante> listaE;
     
     @FXML
     private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
+        String nombre = jnombre.getText();
+         String telefono = jtelefono.getText();
+          String correo = jcorreo.getText();
+           String codigo = jcodigo.getText();
+            String carrera = jcarrera.getText();
+            
+            Estudiante objE = new Estudiante (codigo,carrera,nombre,telefono,correo);
+            listaE.add(objE);
+        
     }
     
+    @FXML
+    private void guardarXML(ActionEvent event) {
+        Estudiante objV = new Estudiante();
+        
+      boolean guardar = objV.crearArchivoXML(listaE);
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-    
+                         
 }
